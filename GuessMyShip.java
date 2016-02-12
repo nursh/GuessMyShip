@@ -6,6 +6,19 @@ public class GuessMyShip{
 	private int hits;
 	private int[] shipLocation;
 
+	public GuessMyShip() {
+		hits = 0;
+		shipLocation = new int[3];
+	}
+
+	public void setShipLocation(int[] location) {
+
+	}
+
+	public String guessShipLocation(int userGuess){
+
+	}
+
 	public static void main(String[] args) {
 		
 	}
