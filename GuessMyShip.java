@@ -16,7 +16,7 @@ public class GuessMyShip{
 	}
 
 	public String guessShipLocation(int userGuess){
-
+		return HIT;
 	}
 
 	public static void main(String[] args) {
