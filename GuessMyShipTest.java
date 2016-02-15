@@ -4,11 +4,20 @@ import static org.junit.Assert.*;
 
 public class GuessMyShipTest{
 
+	@Before
+	public void setUp() {
+
+		System.out.println("This is the start of the test");
+	}
+
 	@Test
-	public void test() {
-		System.out.println("I am the test Baby!!!");
+	public void testSetShipLocation() {
+
+		System.out.println("Testing.....");
 		GuessMyShip gms = new GuessMyShip();
-		assertEquals("hit",gms.guessShipLocation(3));
+		int[] locations = {1,2,3};
+		gms.setShipLocation(locations);
+		assertArrayEquals(locations, gms.getShipLocation());
 	}
 
 }

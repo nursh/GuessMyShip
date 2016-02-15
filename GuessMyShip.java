@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class GuessMyShip{
 
 	public static final String HIT = "hit";
@@ -13,9 +15,16 @@ public class GuessMyShip{
 
 	public void setShipLocation(int[] location) {
 
+		shipLocation = Arrays.copyOf(location, location.length);
+	}
+
+	public int[] getShipLocation() {
+
+		return shipLocation;
 	}
 
 	public String guessShipLocation(int userGuess){
+
 		return HIT;
 	}
 
