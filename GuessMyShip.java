@@ -47,8 +47,39 @@ public class GuessMyShip{
 		return MISS;
 	}
 
+	public static void clearScreen() {  
+    	System.out.print("\033[H\033[2J");  
+    	System.out.flush();  
+    } 
+
 	public static void main(String[] args) {
-		
+
+		Scanner scanner = new Scanner(System.in);
+		GuessMyShip gms = new GuessMyShip();
+		String result = "";
+		System.out.println("Enter the location of your ship:");
+		System.out.println("Choose 3 numbers between 0-9 in the format, 'x y z' and press enter:");
+		String shipLocation = scanner.nextLine();
+		int[] location = new int[3];	
+		int i = 0;
+		for(char c: shipLocation.toCharArray()){
+				if(!(Character.isWhitespace(c))) {
+					location[i] = Character.getNumericValue(c);
+					i++;
+				}
+				
+		}
+		clearScreen();
+		gms.setShipLocation(location);
+		System.out.println("Guess the location of my ship: ");
+		while (!(result.equals(KILL))) {
+			System.out.println("Enter your guess: ");
+			int guess = scanner.nextInt();
+			result = gms.guessShipLocation(guess);
+			System.out.println(result);
+		}
+		System.out.println("Congratulations You won!!!!");
+
 	}
 
 }
