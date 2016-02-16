@@ -10,10 +10,12 @@ public class GuessMyShip{
 
 	private int hits;
 	private int[] shipLocation;
+	private List<Integer> guesses;
 
 	public GuessMyShip() {
 		hits = 0;
 		shipLocation = new int[3];
+		guesses = new ArrayList<>();
 	}
 
 	public void setShipLocation(int[] location) {
@@ -52,6 +54,14 @@ public class GuessMyShip{
     	System.out.flush();  
     } 
 
+    public boolean guessedBefore(int guess) {
+    	if (guesses.contains(guess)){
+    		return true;
+    	}
+    	guesses.add(guess);
+    	return false;
+    }
+
 	public static void main(String[] args) {
 
 		Scanner scanner = new Scanner(System.in);
@@ -66,8 +76,7 @@ public class GuessMyShip{
 				if(!(Character.isWhitespace(c))) {
 					location[i] = Character.getNumericValue(c);
 					i++;
-				}
-				
+				}			
 		}
 		clearScreen();
 		gms.setShipLocation(location);
@@ -75,8 +84,13 @@ public class GuessMyShip{
 		while (!(result.equals(KILL))) {
 			System.out.println("Enter your guess: ");
 			int guess = scanner.nextInt();
-			result = gms.guessShipLocation(guess);
-			System.out.println(result);
+			if (gms.guessedBefore(guess)) {
+				System.out.println("That number has been guessed before.");
+				System.out.println("Please guess another number:");
+			} else {
+				result = gms.guessShipLocation(guess);
+				System.out.println(result);
+			}		
 		}
 		System.out.println("Congratulations You won!!!!");
 
